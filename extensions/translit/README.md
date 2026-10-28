@@ -23,8 +23,9 @@ input together with the current Cyrillic output and replaces the preview (and
 the Copy/Paste actions) with the corrected text; typing in the input field
 reverts to the live transliteration.
 
-This action needs Raycast Pro: the extension AI API is Pro-gated, and users
-without an active Pro subscription get an access prompt instead. It uses your
+This action is only shown when Raycast AI access is available: the extension AI
+API requires an active Raycast Pro subscription, so users without one do not
+see the action at all. It uses your
 default Raycast AI model, which can also be a model from a custom provider
 configured in Raycast.
 
@@ -89,8 +90,10 @@ be added in future releases.
 | я        | ya, ja, q                          |
 
 Case rules: capital input yields capital Cyrillic. For the sign markers `#` and
-`'` the case is taken from the surrounding letters, so `Ob'ekt` → `Объект` and
-`OB#EKT` → `ОБЪЕКТ`; explicit uppercase markers are `##` → `Ъ` and `''` → `Ь`.
+`'` the case is taken from the surrounding letters, or, for a word-final
+marker, from the preceding letter: `ob'ekt` → `обьект`, `ob#ekt` → `объект`,
+`Ob'ekt` → `Обьект`, `OB#EKT` → `ОБЪЕКТ`, `DEN'` → `ДЕНЬ`; explicit uppercase
+markers are `##` → `Ъ` and `''` → `Ь`.
 Any character not in the table (digits, punctuation, emoji, other scripts) is
 passed through unchanged.
 
@@ -119,7 +122,7 @@ transliterate the Russian parts around it and type the fragment afterwards.
 | dobryj den' | добрый день       |
 | shhuka      | щука              |
 | shchuka     | щука              |
-| Ob'ekt      | Объект            |
+| Ob'ekt      | Обьект            |
 | OB#EKT      | ОБЪЕКТ            |
 
 ## Development

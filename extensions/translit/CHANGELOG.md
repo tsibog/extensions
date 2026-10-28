@@ -6,7 +6,8 @@
   transliterated to `ё` instead of passing through
 - Add the `shch` spelling for `щ` (`shchuka` → `щука`)
 - Take the case of the hard and soft sign markers (`#`, `'`) from the
-  surrounding letters, so `OB#EKT` → `ОБЪЕКТ` instead of `ОБъЕКТ`
+  surrounding letters, so `OB#EKT` → `ОБЪЕКТ` instead of `ОБъЕКТ`, and let
+  word-final markers follow a preceding capital (`DEN'` → `ДЕНЬ`)
 - Show an empty output preview and hide the copy/paste actions when there is
   no input, instead of a fake `Привет...` placeholder
 - Replace a fragile 2-item sort comparator for action ordering with an explicit

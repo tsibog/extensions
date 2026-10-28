@@ -90,10 +90,14 @@ export function transliterateLatinToCyrillic(input: string): string {
       if (cyrillicChar) {
         // For letter sequences, take the case from the first Latin letter.
         // For non-letter markers (hard sign "#", soft sign "'"), take the case
-        // from the surrounding letters so that e.g. "OB#EKT" becomes "ОБЪЕКТ".
+        // from the surrounding letters so that e.g. "OB#EKT" becomes "ОБЪЕКТ";
+        // a word-final marker (next char missing or non-letter) follows the
+        // preceding letter, so "DEN'" becomes "ДЕНЬ".
         // Explicit uppercase markers ("##", "''") keep their uppercase mapping.
+        const nextChar: string | undefined = normalized[i + currentLength];
         const contextIsUppercase =
-          isUppercaseLetter(result[result.length - 1]) && isUppercaseLetter(normalized[i + currentLength]);
+          isUppercaseLetter(result[result.length - 1]) &&
+          (nextChar === undefined || !isLetter(nextChar) || isUppercaseLetter(nextChar));
         const shouldUppercase = isLetter(sequence[0])
           ? sequence[0] === sequence[0].toUpperCase()
           : contextIsUppercase || cyrillicChar === cyrillicChar.toUpperCase();

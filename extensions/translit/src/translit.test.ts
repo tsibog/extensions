@@ -21,6 +21,10 @@ const CASES: Array<[string, string]> = [
   ["##EKT", "ЪЕКТ"],
   // Documented collision: "it's" intends "ит'с"-ish input, maps to итьс
   ["it's", "итьс"],
+  // Word-final sign markers follow a preceding capital letter
+  ["DEN'", "ДЕНЬ"],
+  ["DEN'!", "ДЕНЬ!"],
+  ["OB'", "ОБЬ"],
   ["", ""],
   // Non-mapped characters (emoji) pass through untouched
   ["🙂 privet 🙂", "🙂 привет 🙂"],
